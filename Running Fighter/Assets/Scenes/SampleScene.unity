@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 479810215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: 0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 716980346}
   - component: {fileID: 716980345}
   - component: {fileID: 716980347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 719341418}
   - component: {fileID: 719341417}
   - component: {fileID: 719341419}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 754985416}
   - component: {fileID: 754985415}
   - component: {fileID: 754985417}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 1106409484}
   - component: {fileID: 1106409483}
   - component: {fileID: 1106409486}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ Transform:
   m_GameObject: {fileID: 1260209529}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.34, y: -3.98, z: 0}
+  m_LocalPosition: {x: -12.63, y: -3.97, z: 0}
   m_LocalScale: {x: 1.28, y: 1.28, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -932,7 +932,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.29896894, y: 0.44744205}
+  m_Offset: {x: -0.054021955, y: 0.44744205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -943,7 +943,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.80345863, y: 2.047465}
+  m_Size: {x: 0.8118428, y: 2.047465}
   m_EdgeRadius: 0
 --- !u!50 &1260209533
 Rigidbody2D:
@@ -985,7 +985,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  jumpForce: 5
+  jumpForce: 6.3
+  checkDistance: 0.8
+  groundType:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1624795245
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1001,7 @@ GameObject:
   - component: {fileID: 1624795247}
   - component: {fileID: 1624795246}
   - component: {fileID: 1624795248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1131,7 @@ GameObject:
   - component: {fileID: 1693226523}
   - component: {fileID: 1693226522}
   - component: {fileID: 1693226524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}

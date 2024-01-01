@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private float xInput;
+    [Header("Speed and Jump")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     private Rigidbody2D rb;
@@ -10,6 +11,10 @@ public class Player : MonoBehaviour
     //[SerializeField] private bool isMoving;
     private int facingDirection = 1;
     private bool facingRight = true;
+    [Header("Ground Collision Settings")]
+    [SerializeField] private float checkDistance;
+    [SerializeField] private LayerMask groundType;
+    private bool isOnTheGround;
 
     void Start()
     {
@@ -21,9 +26,16 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckInput();
+        CheckOnGround();
         FlipController();
         AnimatorControllers();
     }
+
+    private void CheckOnGround()
+    {
+        isOnTheGround = Physics2D.Raycast(transform.position, Vector2.down, checkDistance, groundType);
+    }
+
     private void Movement()
     {
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
@@ -40,7 +52,10 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        if (isOnTheGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
     }
 
     private void AnimatorControllers()
@@ -62,5 +77,10 @@ public class Player : MonoBehaviour
             Flip();
         else if (rb.velocity.x < 0 && facingRight)
             Flip();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - checkDistance));
     }
 }
