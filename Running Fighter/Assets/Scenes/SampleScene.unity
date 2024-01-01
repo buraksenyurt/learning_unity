@@ -1245,10 +1245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDuration: 5
-  dashTime: 0
   dashSpeed: 4
   dashCoolDown: 1.5
-  dashCoolDownTime: 0
   walkingSpeed: 2
   jumpForce: 10
   checkDistance: 0.8
@@ -1464,7 +1462,7 @@ Transform:
   m_GameObject: {fileID: 1693226521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.2633, y: -0.0861, z: 0}
+  m_LocalPosition: {x: 17.12, y: -0.08, z: 0}
   m_LocalScale: {x: 2.1155825, y: 10.222788, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

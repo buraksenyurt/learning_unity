@@ -4,10 +4,10 @@ public class Player : MonoBehaviour
 {
     [Header("Dash Info")]
     [SerializeField] private float dashDuration;
-    [SerializeField] private float dashTime;
+    private float dashTimer;
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCoolDown;
-    [SerializeField] private float dashCoolDownTime;
+    private float dashCoolDownTimer;
 
     private float xInput;
     [Header("Speed and Jump")]
@@ -34,13 +34,8 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckInput();
-        dashTime -= Time.deltaTime;
-        dashCoolDownTime -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S) && dashCoolDownTime < 0)
-        {
-            dashTime = dashDuration;
-            dashCoolDownTime = dashCoolDown;
-        }
+        dashTimer -= Time.deltaTime;
+        dashCoolDownTimer -= Time.deltaTime;
         CheckOnGround();
         FlipController();
         AnimatorControllers();
@@ -53,7 +48,7 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        if (dashTime > 0)
+        if (dashTimer > 0)
         {
             rb.velocity = new Vector2(xInput * dashSpeed, rb.velocity.y);
         }
@@ -66,13 +61,25 @@ public class Player : MonoBehaviour
     private void CheckInput()
     {
         xInput = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SetDashTimers();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
         else
         {
-            isRunning = Input.GetKey(KeyCode.S) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && dashTime > 0;
+            isRunning = Input.GetKey(KeyCode.S) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && dashTimer > 0;
+        }
+    }
+    private void SetDashTimers()
+    {
+        if (dashCoolDownTimer < 0)
+        {
+            dashTimer = dashDuration;
+            dashCoolDownTimer = dashCoolDown;
         }
     }
 
