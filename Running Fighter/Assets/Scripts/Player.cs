@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashDuration;
     [SerializeField] private float dashTime;
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashCoolDown;
+    [SerializeField] private float dashCoolDownTime;
 
     private float xInput;
     [Header("Speed and Jump")]
@@ -33,9 +35,11 @@ public class Player : MonoBehaviour
         Movement();
         CheckInput();
         dashTime -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S))
+        dashCoolDownTime -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.S) && dashCoolDownTime < 0)
         {
             dashTime = dashDuration;
+            dashCoolDownTime = dashCoolDown;
         }
         CheckOnGround();
         FlipController();
