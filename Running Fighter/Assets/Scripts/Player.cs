@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
     {
         var isMoving = rb.velocity.x != 0;
         anim.SetBool("isMoving", isMoving);
+        anim.SetBool("isOnTheGround", isOnTheGround);
     }
 
     private void Flip()
