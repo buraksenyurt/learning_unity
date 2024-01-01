@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Dash Info")]
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashSpeed;
+
     private float xInput;
     [Header("Speed and Jump")]
     [SerializeField] private float walkingSpeed;
-    [SerializeField] private float runningSpeed;
     [SerializeField] private float jumpForce;
     private Rigidbody2D rb;
     private Animator anim;
     private bool isRunning;
+    private bool isWalking;
     private int facingDirection = 1;
     private bool facingRight = true;
     [Header("Ground Collision Settings")]
@@ -27,6 +32,11 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckInput();
+        dashTime -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            dashTime = dashDuration;
+        }
         CheckOnGround();
         FlipController();
         AnimatorControllers();
@@ -39,10 +49,14 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        if (!isRunning)
-            rb.velocity = new Vector2(xInput * walkingSpeed, rb.velocity.y);
+        if (dashTime > 0)
+        {
+            rb.velocity = new Vector2(xInput * dashSpeed, rb.velocity.y);
+        }
         else
-            rb.velocity = new Vector2(xInput * runningSpeed, rb.velocity.y);
+        {
+            rb.velocity = new Vector2(xInput * walkingSpeed, rb.velocity.y);
+        }
     }
 
     private void CheckInput()
@@ -54,7 +68,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            isRunning = Input.GetKey(KeyCode.LeftShift) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
+            isRunning = Input.GetKey(KeyCode.S) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && dashTime > 0;
         }
     }
 
@@ -68,7 +82,7 @@ public class Player : MonoBehaviour
 
     private void AnimatorControllers()
     {
-        var isWalking = rb.velocity.x != 0 && !isRunning;
+        isWalking = rb.velocity.x != 0 && !isRunning;
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isOnTheGround", isOnTheGround);

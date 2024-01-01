@@ -1244,8 +1244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7b1b3bb1407bcf09b349b613247bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 1
-  runningSpeed: 4
+  dashDuration: 2.5
+  dashTime: 0
+  dashSpeed: 4
+  walkingSpeed: 2
   jumpForce: 10
   checkDistance: 0.8
   groundType:
