@@ -4,11 +4,12 @@ public class Player : MonoBehaviour
 {
     private float xInput;
     [Header("Speed and Jump")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float walkingSpeed;
+    [SerializeField] private float runningSpeed;
     [SerializeField] private float jumpForce;
     private Rigidbody2D rb;
     private Animator anim;
-    //[SerializeField] private bool isMoving;
+    private bool isRunning;
     private int facingDirection = 1;
     private bool facingRight = true;
     [Header("Ground Collision Settings")]
@@ -38,7 +39,10 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+        if (!isRunning)
+            rb.velocity = new Vector2(xInput * walkingSpeed, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(xInput * runningSpeed, rb.velocity.y);
     }
 
     private void CheckInput()
@@ -47,6 +51,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+        else
+        {
+            isRunning = Input.GetKey(KeyCode.LeftShift) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
         }
     }
 
@@ -60,8 +68,9 @@ public class Player : MonoBehaviour
 
     private void AnimatorControllers()
     {
-        var isMoving = rb.velocity.x != 0;
-        anim.SetBool("isMoving", isMoving);
+        var isWalking = rb.velocity.x != 0 && !isRunning;
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isRunning", isRunning);
         anim.SetBool("isOnTheGround", isOnTheGround);
     }
 

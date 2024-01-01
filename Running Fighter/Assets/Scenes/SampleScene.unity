@@ -469,7 +469,7 @@ Transform:
   m_GameObject: {fileID: 679126900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.08, y: -2.89, z: 0}
+  m_LocalPosition: {x: 10.27, y: -2.89, z: 0}
   m_LocalScale: {x: 3, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -989,7 +989,7 @@ Transform:
   m_GameObject: {fileID: 1101448764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.9, y: -1.04, z: 0}
+  m_LocalPosition: {x: 15.17, y: -1.5, z: 0}
   m_LocalScale: {x: 3, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1220,7 +1220,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: ade21a4ad4d5bf18b953290da78a2781, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1244,8 +1244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7b1b3bb1407bcf09b349b613247bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  jumpForce: 7
+  walkingSpeed: 1
+  runningSpeed: 4
+  jumpForce: 10
   checkDistance: 0.8
   groundType:
     serializedVersion: 2
@@ -1634,8 +1635,8 @@ Transform:
   m_GameObject: {fileID: 1945000490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: 0.2, z: 0}
-  m_LocalScale: {x: 3, y: 0.25, z: 0}
+  m_LocalPosition: {x: 9.74, y: 0.04, z: 0}
+  m_LocalScale: {x: 2, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1764,7 +1765,7 @@ Transform:
   m_GameObject: {fileID: 2052450620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.58, y: 1.7, z: 0}
+  m_LocalPosition: {x: -1.95, y: 1.64, z: 0}
   m_LocalScale: {x: 20, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
