@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private bool isOnTheGround;
 
     [Header("Combo Attack")]
+    [SerializeField] private float comboTime = 1f;
+    private float comboTimeCounter;
     private bool isAttacking;
     private int comboCounter;
 
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
         CheckInput();
         dashTimer -= Time.deltaTime;
         dashCoolDownTimer -= Time.deltaTime;
+        comboTimeCounter -= Time.deltaTime;
         CheckOnGround();
         FlipController();
         AnimatorControllers();
@@ -52,7 +55,11 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        if (dashTimer > 0)
+        if (isAttacking)
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
+        else if (dashTimer > 0)
         {
             rb.velocity = new Vector2(xInput * dashSpeed, rb.velocity.y);
         }
@@ -65,6 +72,11 @@ public class Player : MonoBehaviour
     public void StopAttacking()
     {
         isAttacking = false;
+        comboCounter++;
+        if (comboCounter > 2)
+        {
+            comboCounter = 0;
+        }
     }
 
     private void CheckInput()
@@ -72,8 +84,7 @@ public class Player : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.A))
         {
-            isAttacking = true;
-
+            StartAttack();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -85,9 +96,23 @@ public class Player : MonoBehaviour
         }
         else
         {
-            isRunning = Input.GetKey(KeyCode.S) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && dashTimer > 0;
+            isRunning = Input.GetKey(KeyCode.S)
+                && (Input.GetKey(KeyCode.LeftArrow)
+                || Input.GetKey(KeyCode.RightArrow))
+                && dashTimer > 0;
         }
     }
+
+    private void StartAttack()
+    {
+        if (comboTimeCounter < 0)
+        {
+            comboCounter = 0;
+        }
+        isAttacking = true;
+        comboTimeCounter = comboTime;
+    }
+
     private void SetDashTimers()
     {
         if (dashCoolDownTimer < 0)
