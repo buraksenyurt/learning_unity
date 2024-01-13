@@ -8,7 +8,6 @@ public class Player : Entity
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCoolDown;
     private float dashCoolDownTimer;
-
     private float xInput;
     [Header("Speed and Jump")]
     [SerializeField] private float walkingSpeed;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -7,16 +5,22 @@ public class Entity : MonoBehaviour
     protected Animator animator;
     protected new Rigidbody2D rigidbody;
     protected bool isOnTheGround;
+    protected bool isWallDetected;
     [Header("Collision Settings")]
-    [SerializeField] protected float checkDistance;
+    [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected LayerMask groundType;
     [SerializeField] protected Transform groundCheck;
+    [Space]
+    [SerializeField] protected float wallCheckDistance;
+    [SerializeField] protected Transform wallCheck;
     protected int facingDirection = 1;
     protected bool facingRight = true;
     protected virtual void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        // if (wallCheck == null)
+        //     wallCheck = transform;
     }
 
     protected virtual void Update()
@@ -26,7 +30,8 @@ public class Entity : MonoBehaviour
 
     protected virtual void CheckCollision()
     {
-        isOnTheGround = Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistance, groundType);
+        isOnTheGround = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundType);
+        //isWallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right, wallCheckDistance, groundType);
     }
 
     protected void Flip()
@@ -38,6 +43,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void OnDrawGizmos()
     {
-        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - checkDistance));
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+        //Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 }
