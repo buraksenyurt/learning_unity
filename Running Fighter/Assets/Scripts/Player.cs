@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     [Header("Dash Info")]
     [SerializeField] private float dashDuration;
@@ -13,59 +13,45 @@ public class Player : MonoBehaviour
     [Header("Speed and Jump")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float jumpForce;
-    private Rigidbody2D rb;
-    private Animator anim;
     private bool isRunning;
     private bool isWalking;
-    private int facingDirection = 1;
-    private bool facingRight = true;
-    [Header("Ground Collision Settings")]
-    [SerializeField] private float checkDistance;
-    [SerializeField] private LayerMask groundType;
-    private bool isOnTheGround;
-
     [Header("Combo Attack")]
     [SerializeField] private float comboTime = 1f;
     private float comboTimeCounter;
     private bool isAttacking;
     private int comboCounter;
 
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+        base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         Movement();
         CheckInput();
         FlipController();
         dashTimer -= Time.deltaTime;
         dashCoolDownTimer -= Time.deltaTime;
         comboTimeCounter -= Time.deltaTime;
-        CheckOnGround();
         AnimatorControllers();
-    }
-
-    private void CheckOnGround()
-    {
-        isOnTheGround = Physics2D.Raycast(transform.position, Vector2.down, checkDistance, groundType);
     }
 
     private void Movement()
     {
         if (isAttacking)
         {
-            rb.velocity = new Vector2(0, 0);
+            rigidbody.velocity = new Vector2(0, 0);
         }
         else if (dashTimer > 0 && isRunning)
         {
-            rb.velocity = new Vector2(xInput * dashSpeed, rb.velocity.y);
+            rigidbody.velocity = new Vector2(xInput * dashSpeed, rigidbody.velocity.y);
         }
         else
         {
-            rb.velocity = new Vector2(xInput * walkingSpeed, rb.velocity.y);
+            rigidbody.velocity = new Vector2(xInput * walkingSpeed, rigidbody.velocity.y);
         }
     }
 
@@ -126,37 +112,25 @@ public class Player : MonoBehaviour
     {
         if (isOnTheGround)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
         }
     }
 
     private void AnimatorControllers()
     {
-        isWalking = rb.velocity.x != 0 && !isRunning;
-        anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isOnTheGround", isOnTheGround);
-        anim.SetBool("isAttacking", isAttacking);
-        anim.SetInteger("comboCounter", comboCounter);
-    }
-
-    private void Flip()
-    {
-        facingDirection *= -1;
-        facingRight = !facingRight;
-        transform.Rotate(0, 180, 0);
+        isWalking = rigidbody.velocity.x != 0 && !isRunning;
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("isOnTheGround", isOnTheGround);
+        animator.SetBool("isAttacking", isAttacking);
+        animator.SetInteger("comboCounter", comboCounter);
     }
 
     private void FlipController()
     {
-        if (rb.velocity.x > 0 && !facingRight)
+        if (rigidbody.velocity.x > 0 && !facingRight)
             Flip();
-        else if (rb.velocity.x < 0 && facingRight)
+        else if (rigidbody.velocity.x < 0 && facingRight)
             Flip();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - checkDistance));
     }
 }
