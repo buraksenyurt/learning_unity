@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundType;
     private bool isOnTheGround;
 
+    [Header("Combo Attack")]
+    private bool isAttacking;
+    private int comboCounter;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,9 +62,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StopAttacking()
+    {
+        isAttacking = false;
+    }
+
     private void CheckInput()
     {
         xInput = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            isAttacking = true;
+
+        }
         if (Input.GetKeyDown(KeyCode.S))
         {
             SetDashTimers();
@@ -97,6 +111,8 @@ public class Player : MonoBehaviour
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isOnTheGround", isOnTheGround);
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetInteger("comboCounter", comboCounter);
     }
 
     private void Flip()
