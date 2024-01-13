@@ -40,11 +40,11 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckInput();
+        FlipController();
         dashTimer -= Time.deltaTime;
         dashCoolDownTimer -= Time.deltaTime;
         comboTimeCounter -= Time.deltaTime;
         CheckOnGround();
-        FlipController();
         AnimatorControllers();
     }
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
-        else if (dashTimer > 0)
+        else if (dashTimer > 0 && isRunning)
         {
             rb.velocity = new Vector2(xInput * dashSpeed, rb.velocity.y);
         }
@@ -105,11 +105,11 @@ public class Player : MonoBehaviour
 
     private void StartAttack()
     {
+        isAttacking = true;
         if (comboTimeCounter < 0)
         {
             comboCounter = 0;
         }
-        isAttacking = true;
         comboTimeCounter = comboTime;
     }
 
