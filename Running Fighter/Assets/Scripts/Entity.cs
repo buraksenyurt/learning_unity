@@ -19,8 +19,8 @@ public class Entity : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        // if (wallCheck == null)
-        //     wallCheck = transform;
+        if (wallCheck == null)
+            wallCheck = transform;
     }
 
     protected virtual void Update()
@@ -30,8 +30,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void CheckCollision()
     {
-        isOnTheGround = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundType);
-        //isWallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right, wallCheckDistance, groundType);
+        isOnTheGround = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundType);        
     }
 
     protected void Flip()
@@ -44,6 +43,6 @@ public class Entity : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-        //Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 }

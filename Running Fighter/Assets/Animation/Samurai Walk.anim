@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shinobi Walk Animation
+  m_Name: Samurai Walk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,21 +21,21 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1020450293, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: 98000063, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.1
-      value: {fileID: -1319418867, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: 344478487, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.2
-      value: {fileID: 2077530866, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: -1430358088, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.3
-      value: {fileID: -1420073511, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: -1639179478, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.4
-      value: {fileID: 2031644319, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: 309243563, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.5
-      value: {fileID: 1818243458, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: -853533923, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.6
-      value: {fileID: 252186715, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: 65471183, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     - time: 0.7
-      value: {fileID: -319993943, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+      value: {fileID: 1305105007, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -58,14 +58,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1020450293, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: -1319418867, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: 2077530866, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: -1420073511, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: 2031644319, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: 1818243458, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: 252186715, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
-    - {fileID: -319993943, guid: 1c278ec5fe177f729882907cc37a5bbf, type: 3}
+    - {fileID: 98000063, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: 344478487, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: -1430358088, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: -1639179478, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: 309243563, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: -853533923, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: 65471183, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
+    - {fileID: 1305105007, guid: 869c6b8fb3c8a3946936b1959058a0c9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -76,7 +76,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
