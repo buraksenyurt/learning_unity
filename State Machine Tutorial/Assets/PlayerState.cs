@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerState
 {
     protected PlayerStateMachine _playerStateMachine;
@@ -13,15 +11,17 @@ public class PlayerState
     }
     public virtual void Enter()
     {
-        Debug.Log($"Enter the {_animBoolName}");
+        //Debug.Log($"Enter the {_animBoolName}");
+        _player.Anim.SetBool(_animBoolName, true);
     }
     public virtual void Update()
     {
-        Debug.Log($"in the {_animBoolName}");
+        //Debug.Log($"in the {_animBoolName}");
     }
 
     public virtual void Exit()
     {
-        Debug.Log($"Exit form the {_animBoolName}");
+        //Debug.Log($"Exit form the {_animBoolName}");
+        _player.Anim.SetBool(_animBoolName, false);
     }
 }
