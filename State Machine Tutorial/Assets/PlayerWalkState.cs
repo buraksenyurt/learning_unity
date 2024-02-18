@@ -16,11 +16,12 @@ public class PlayerWalkState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.W))
-            _player.StateMachine.ChangeState(_player.IdleState);
+        _player.SetVelocity(xInput * _player.WalkSpeed, RigiBody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.R))
-            _player.StateMachine.ChangeState(_player.RunState);
+        if (xInput == 0)
+        {
+            _player.StateMachine.ChangeState(_player.IdleState);
+        }
     }
 
     public override void Exit()

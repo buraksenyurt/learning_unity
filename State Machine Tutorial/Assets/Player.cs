@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement Info")]
+    public float WalkSpeed = 6f;
+    public float RunSpeed = 12f;
+
     #region Components
     public Animator Anim { get; private set; }
+    public Rigidbody2D RigiBody { get; private set; }
 
     #endregion
 
@@ -27,10 +32,16 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponentInChildren<Animator>();
         StateMachine.Initialize(IdleState);
+        RigiBody = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
         StateMachine.CurrentState.Update();
+    }
+
+    public void SetVelocity(float xVelocity, float yVelocity)
+    {
+        RigiBody.velocity = new Vector2(xVelocity, yVelocity);
     }
 
 }
