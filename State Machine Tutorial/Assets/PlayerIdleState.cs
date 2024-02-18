@@ -15,8 +15,11 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.W))
             _player.StateMachine.ChangeState(_player.WalkState);
+
+        if (Input.GetKeyDown(KeyCode.R))
+            _player.StateMachine.ChangeState(_player.RunState);
     }
 
     public override void Exit()

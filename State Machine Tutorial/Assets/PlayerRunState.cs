@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerWalkState : PlayerState
+public class PlayerRunState : PlayerState
 {
-    public PlayerWalkState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
+    public PlayerRunState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
         : base(player, playerStateMachine, animBoolName)
     {
     }
@@ -16,11 +16,11 @@ public class PlayerWalkState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.R))
             _player.StateMachine.ChangeState(_player.IdleState);
 
-        if (Input.GetKeyDown(KeyCode.R))
-            _player.StateMachine.ChangeState(_player.RunState);
+        if (Input.GetKeyDown(KeyCode.W))
+            _player.StateMachine.ChangeState(_player.WalkState);
     }
 
     public override void Exit()

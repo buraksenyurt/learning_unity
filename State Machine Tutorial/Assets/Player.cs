@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
+    public PlayerRunState RunState { get; set; }
 
     #endregion
 
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, StateMachine, "Idle");
         WalkState = new PlayerWalkState(this, StateMachine, "Walk");
+        RunState = new PlayerRunState(this, StateMachine, "Run");
     }
     private void Start()
     {
