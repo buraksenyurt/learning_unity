@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37371796722ae3251864561647db62c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalkSpeed: 6
+  RunSpeed: 12
+  JumpForce: 12
 --- !u!70 &83406436
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

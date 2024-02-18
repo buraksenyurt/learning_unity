@@ -3,8 +3,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement Info")]
-    public float WalkSpeed = 6f;
-    public float RunSpeed = 12f;
+    public float WalkSpeed = 4f;
+    public float RunSpeed = 10f;
+    public float JumpForce;
 
     #region Components
     public Animator Anim { get; private set; }
@@ -16,7 +17,9 @@ public class Player : MonoBehaviour
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
-    public PlayerRunState RunState { get; set; }
+    public PlayerRunState RunState { get; private set; }
+    public PlayerAirState AirState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
 
     #endregion
 
@@ -27,12 +30,14 @@ public class Player : MonoBehaviour
         IdleState = new PlayerIdleState(this, StateMachine, "Idle");
         WalkState = new PlayerWalkState(this, StateMachine, "Walk");
         RunState = new PlayerRunState(this, StateMachine, "Run");
+        AirState = new PlayerAirState(this, StateMachine, "Jump");
+        JumpState = new PlayerJumpState(this, StateMachine, "Jump");
     }
     private void Start()
     {
+        RigiBody = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
         StateMachine.Initialize(IdleState);
-        RigiBody = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {

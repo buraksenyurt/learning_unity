@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class PlayerRunState : PlayerState
+public class PlayerRunState : PlayerGroundedState
 {
     public PlayerRunState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
         : base(player, playerStateMachine, animBoolName)

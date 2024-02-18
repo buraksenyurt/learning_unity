@@ -23,6 +23,8 @@ public class PlayerState
     {
         //Debug.Log($"in the {_animBoolName}");
         xInput = Input.GetAxisRaw("Horizontal");
+        _player.Anim.SetFloat("yVelocity", RigiBody.velocity.y);
+        //Debug.Log(_player.Anim.GetFloat("yVelocity").ToString());
     }
 
     public virtual void Exit()

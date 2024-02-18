@@ -1,6 +1,6 @@
-public class PlayerWalkState : PlayerGroundedState
+public class PlayerAirState : PlayerState
 {
-    public PlayerWalkState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
+    public PlayerAirState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
         : base(player, playerStateMachine, animBoolName)
     {
     }
@@ -14,9 +14,7 @@ public class PlayerWalkState : PlayerGroundedState
     {
         base.Update();
 
-        _player.SetVelocity(xInput * _player.WalkSpeed, RigiBody.velocity.y);
-
-        if (xInput == 0)
+        if (RigiBody.velocity.y == 0)
         {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
