@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,6 +7,16 @@ public class Player : MonoBehaviour
     public float WalkSpeed = 4f;
     public float RunSpeed = 10f;
     public float JumpForce;
+
+    [Header("Collision Info")]
+    [SerializeField] private Transform GroundCheck;
+    [SerializeField] private float GroundCheckDistance;
+    [SerializeField] private Transform WallCheck;
+    [SerializeField] private float WallCheckDistance;
+    [SerializeField] private LayerMask WhatIsGround;
+
+    public int FaceDirection { get; private set; } = 1;
+    private bool FacingRight = true;
 
     #region Components
     public Animator Anim { get; private set; }
@@ -47,6 +58,29 @@ public class Player : MonoBehaviour
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         RigiBody.velocity = new Vector2(xVelocity, yVelocity);
+        FlipController(xVelocity);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(GroundCheck.position, new Vector3(GroundCheck.position.x, GroundCheck.position.y - GroundCheckDistance));
+        Gizmos.DrawLine(WallCheck.position, new Vector3(WallCheck.position.x + WallCheckDistance, WallCheck.position.y));
+    }
+
+    public void Flip()
+    {
+        FaceDirection *= -1;
+        FacingRight = !FacingRight;
+        transform.Rotate(0, 180, 0);
+    }
+
+    public void FlipController(float xValue)
+    {
+        if (xValue > 0 && !FacingRight)
+            Flip();
+        else if (xValue < 0 && FacingRight)
+            Flip();
+    }
+
+    public bool IsGroundDetected() => Physics2D.Raycast(GroundCheck.position, Vector2.down, GroundCheckDistance, WhatIsGround);
 }

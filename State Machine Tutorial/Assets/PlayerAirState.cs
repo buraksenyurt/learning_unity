@@ -14,7 +14,7 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
-        if (RigiBody.velocity.y == 0)
+        if (_player.IsGroundDetected())
         {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
