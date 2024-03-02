@@ -4,14 +4,17 @@ public class PlayerState
 {
     protected PlayerStateMachine _playerStateMachine;
     protected float xInput;
+    protected float yInput;
     protected Player _player;
     protected Rigidbody2D RigiBody;
     private string _animBoolName;
+    public string Name;
     public PlayerState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
     {
         _playerStateMachine = playerStateMachine;
         _player = player;
         _animBoolName = animBoolName;
+        Name = animBoolName;
     }
     public virtual void Enter()
     {
@@ -23,6 +26,7 @@ public class PlayerState
     {
         //Debug.Log($"in the {_animBoolName}");
         xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
         _player.Anim.SetFloat("yVelocity", RigiBody.velocity.y);
         //Debug.Log(_player.Anim.GetFloat("yVelocity").ToString());
     }

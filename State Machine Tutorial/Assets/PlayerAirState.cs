@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerAirState : PlayerState
 {
     public PlayerAirState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)
@@ -17,6 +19,15 @@ public class PlayerAirState : PlayerState
         if (_player.IsGroundDetected())
         {
             _player.StateMachine.ChangeState(_player.IdleState);
+        }
+        if (_player.IsWallDetected())
+        {
+            _player.StateMachine.ChangeState(_player.WallSlideState);
+        }
+        if (xInput != 0)
+        {
+            // Debug.Log($"Current State is, {_playerStateMachine.CurrentState.Name}");
+            _player.SetVelocity(_player.WalkSpeed * .75f * xInput, RigiBody.velocity.y);
         }
     }
 

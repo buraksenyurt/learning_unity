@@ -15,14 +15,24 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Update();
 
-        if (xInput != 0 && Input.GetKey(KeyCode.W))
+        if (xInput == _player.FaceDirection && _player.IsWallDetected())
         {
-            _player.StateMachine.ChangeState(_player.WalkState);
+            return;
         }
-        else if (xInput != 0 && Input.GetKey(KeyCode.R))
+
+        if (xInput != 0)
         {
-            _player.StateMachine.ChangeState(_player.RunState);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _player.StateMachine.ChangeState(_player.RunState);
+            }
+            else
+            {
+                _player.StateMachine.ChangeState(_player.WalkState);
+            }
         }
+
+
     }
 
     public override void Exit()
