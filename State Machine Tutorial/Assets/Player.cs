@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
+    public PlayerBaseAttackState BaseAttackState { get; private set; }
 
     #endregion
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, "Jump");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, "WallSlide");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, "WallJump");
+        BaseAttackState = new PlayerBaseAttackState(this, StateMachine, "Attack");
     }
     private void Start()
     {
@@ -87,4 +89,6 @@ public class Player : MonoBehaviour
 
     public bool IsGroundDetected() => Physics2D.Raycast(GroundCheck.position, Vector2.down, GroundCheckDistance, WhatIsGround);
     public bool IsWallDetected() => Physics2D.Raycast(WallCheck.position, Vector2.right * FaceDirection, WallCheckDistance, WhatIsGround);
+
+    public void TriggerAnimation() => StateMachine.CurrentState.AnimationFinishTrigger();
 }
