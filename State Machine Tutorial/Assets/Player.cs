@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -32,6 +31,7 @@ public class Player : MonoBehaviour
     public PlayerAirState AirState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
+    public PlayerWallJumpState WallJumpState { get; private set; }
 
     #endregion
 
@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
         AirState = new PlayerAirState(this, StateMachine, "Jump");
         JumpState = new PlayerJumpState(this, StateMachine, "Jump");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, "WallSlide");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, "WallJump");
     }
     private void Start()
     {

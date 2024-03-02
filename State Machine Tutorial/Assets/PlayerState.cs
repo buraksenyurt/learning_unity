@@ -5,6 +5,7 @@ public class PlayerState
     protected PlayerStateMachine _playerStateMachine;
     protected float xInput;
     protected float yInput;
+    protected float stateTimer;
     protected Player _player;
     protected Rigidbody2D RigiBody;
     private string _animBoolName;

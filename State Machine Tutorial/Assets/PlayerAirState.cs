@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerAirState : PlayerState
 {
     public PlayerAirState(Player player, PlayerStateMachine playerStateMachine, string animBoolName)

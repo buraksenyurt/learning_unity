@@ -16,7 +16,7 @@ public class PlayerWalkState : PlayerGroundedState
 
         _player.SetVelocity(xInput * _player.WalkSpeed, RigiBody.velocity.y);
 
-        if (xInput == 0)
+        if (xInput == 0 || _player.IsWallDetected())
         {
             _player.StateMachine.ChangeState(_player.IdleState);
         }

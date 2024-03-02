@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWallSlideState : PlayerState
@@ -17,6 +15,12 @@ public class PlayerWallSlideState : PlayerState
     public override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _playerStateMachine.ChangeState(_player.WallJumpState);
+            return;
+        }
+
         if (xInput != 0 && _player.FaceDirection != xInput)
         {
             _playerStateMachine.ChangeState(_player.IdleState);
