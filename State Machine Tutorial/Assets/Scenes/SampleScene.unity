@@ -302,6 +302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37371796722ae3251864561647db62c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackMovement:
+  - {x: 1, y: 1}
+  - {x: 1, y: 1}
+  - {x: 3, y: 1}
   WalkSpeed: 6
   RunSpeed: 12
   JumpForce: 16

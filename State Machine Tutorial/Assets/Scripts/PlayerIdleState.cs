@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        RigiBody.velocity = new Vector2(0, 0);
+        _player.SetVelocityToZero();
     }
 
     public override void Update()
@@ -21,7 +21,7 @@ public class PlayerIdleState : PlayerGroundedState
             return;
         }
 
-        if (xInput != 0)
+        if (xInput != 0 && !_player.IsOnAttacking)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {

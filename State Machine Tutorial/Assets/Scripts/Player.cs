@@ -1,7 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Attack Details")]
+    public Vector2[] AttackMovement;
+
     [Header("Movement Info")]
     public float WalkSpeed = 4f;
     public float RunSpeed = 10f;
@@ -16,6 +20,7 @@ public class Player : MonoBehaviour
 
     public int FaceDirection { get; private set; } = 1;
     private bool FacingRight = true;
+    public bool IsOnAttacking { get; private set; }
 
     #region Components
     public Animator Anim { get; private set; }
@@ -89,6 +94,13 @@ public class Player : MonoBehaviour
 
     public bool IsGroundDetected() => Physics2D.Raycast(GroundCheck.position, Vector2.down, GroundCheckDistance, WhatIsGround);
     public bool IsWallDetected() => Physics2D.Raycast(WallCheck.position, Vector2.right * FaceDirection, WallCheckDistance, WhatIsGround);
-
     public void TriggerAnimation() => StateMachine.CurrentState.AnimationFinishTrigger();
+    public IEnumerator BusyForAttacking(float seconds)
+    {
+        IsOnAttacking = true;
+        yield return new WaitForSeconds(seconds);
+        IsOnAttacking = false;
+    }
+
+    public void SetVelocityToZero() => RigiBody.velocity = new Vector2(0, 0);
 }
